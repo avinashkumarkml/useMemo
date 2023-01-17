@@ -1,23 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import React, { useMemo, useState } from "react";
 
 function App() {
+  const [counter, setCounter] = useState(0);
+  const [counter1, setCounter1] = useState(0);
+
+  const isEven = useMemo(() => {
+    let i = 0;
+    while (i < 2000000000) i++;
+    // console.log()
+    return counter % 2 === 0;
+  }, [counter]);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>{counter}</h1>
+      <h1>{counter1}</h1>
+
+      <button onClick={() => setCounter(counter + 1)}>INC</button>
+      <span>{isEven ? "Even" : "ODD"}</span>
+      <button onClick={() => setCounter1(counter1 + 1)}>DEC</button>
     </div>
   );
 }
